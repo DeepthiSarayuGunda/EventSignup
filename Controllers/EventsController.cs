@@ -11,32 +11,25 @@ namespace EventSignup.Controllers
             new Event
             {
                 Id = 1,
-                Title = "Tech Conference 2026",
-                Date = new DateTime(2026, 7, 15),
-                Location = "Toronto, ON",
-                Attendees = new List<Attendee>
-                {
-                    new Attendee { Name = "Alice Johnson", Email = "alice@example.com" },
-                    new Attendee { Name = "Bob Smith", Email = "bob@example.com" }
-                }
+                Title = "Career Fair",
+                Date = new DateTime(2026, 2, 1),
+                Location = "Gym",
+                Attendees = new List<Attendee>()
             },
             new Event
             {
                 Id = 2,
-                Title = "Community Meetup",
-                Date = new DateTime(2026, 8, 20),
-                Location = "Vancouver, BC",
-                Attendees = new List<Attendee>
-                {
-                    new Attendee { Name = "Charlie Brown", Email = "charlie@example.com" }
-                }
+                Title = "Tech Talk",
+                Date = new DateTime(2026, 2, 8),
+                Location = "Auditorium",
+                Attendees = new List<Attendee>()
             },
             new Event
             {
                 Id = 3,
-                Title = "Startup Pitch Night",
-                Date = new DateTime(2026, 9, 10),
-                Location = "Montreal, QC",
+                Title = "Hack Night",
+                Date = new DateTime(2026, 2, 15),
+                Location = "Library",
                 Attendees = new List<Attendee>()
             }
         };
@@ -75,6 +68,8 @@ namespace EventSignup.Controllers
                     Name = name,
                     Email = email
                 });
+
+                TempData["Success"] = "Attendee registered!";
             }
 
             return RedirectToAction("ManageAttendees", new { id = eventId });

@@ -1,15 +1,15 @@
 @model List<EventSignup.Models.Event>
 
-<h1>Event Manager</h1>
+<h2>Event Manager</h2>
+<p class="text-muted">Select an event to manage attendees.</p>
 
-<table class="table table-striped">
+<table class="table">
     <thead>
         <tr>
             <th>Title</th>
             <th>Date</th>
             <th>Location</th>
-            <th>Attendees</th>
-            <th>Action</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -17,11 +17,10 @@
         {
             <tr>
                 <td>@evt.Title</td>
-                <td>@evt.Date.ToString("MMMM dd, yyyy")</td>
+                <td>@evt.Date.ToString("yyyy-MM-dd")</td>
                 <td>@evt.Location</td>
-                <td>@evt.Attendees.Count</td>
                 <td>
-                    <a asp-controller="Events" asp-action="ManageAttendees" asp-route-id="@evt.Id" class="btn btn-primary btn-sm">
+                    <a asp-controller="Events" asp-action="ManageAttendees" asp-route-id="@evt.Id" class="btn btn-info text-white">
                         Manage Attendees
                     </a>
                 </td>
