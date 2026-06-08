@@ -1,0 +1,59 @@
+@model EventSignup.Models.Event
+
+<h1>Manage Attendees</h1>
+<h3>@Model.Title</h3>
+<p><strong>Date:</strong> @Model.Date.ToString("MMMM dd, yyyy") | <strong>Location:</strong> @Model.Location</p>
+
+<hr />
+
+<h4>Sign Up a New Attendee</h4>
+
+<form asp-controller="Events" asp-action="Signup" method="post" class="mb-4">
+    <input type="hidden" name="eventId" value="@Model.Id" />
+    <div class="row g-3 align-items-end">
+        <div class="col-md-4">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" required />
+        </div>
+        <div class="col-md-4">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required />
+        </div>
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-success">Sign Up</button>
+        </div>
+    </div>
+</form>
+
+<hr />
+
+<h4>Attendees List</h4>
+
+@if (Model.Attendees.Count == 0)
+{
+    <p class="text-muted">No attendees registered yet.</p>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Attendees.Count; i++)
+            {
+                <tr>
+                    <td>@(i + 1)</td>
+                    <td>@Model.Attendees[i].Name</td>
+                    <td>@Model.Attendees[i].Email</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<a asp-controller="Events" asp-action="Index" class="btn btn-secondary mt-3">Back to Event Manager</a>

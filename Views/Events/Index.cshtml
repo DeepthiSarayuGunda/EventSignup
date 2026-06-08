@@ -1,0 +1,31 @@
+@model List<EventSignup.Models.Event>
+
+<h1>Event Manager</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Attendees</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var evt in Model)
+        {
+            <tr>
+                <td>@evt.Title</td>
+                <td>@evt.Date.ToString("MMMM dd, yyyy")</td>
+                <td>@evt.Location</td>
+                <td>@evt.Attendees.Count</td>
+                <td>
+                    <a asp-controller="Events" asp-action="ManageAttendees" asp-route-id="@evt.Id" class="btn btn-primary btn-sm">
+                        Manage Attendees
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
